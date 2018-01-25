@@ -1,4 +1,3 @@
-# ScreenRotate
 浅谈IOS视频全屏播放、屏幕旋转与控制器转场动画，妈妈再也不用担心APP上架被拒了
 ===
 
@@ -20,14 +19,14 @@
 
 **如下图**
 
-![](ScreenRotate/image/sp.gif)
-![](ScreenRotate/image/hp.gif)
+![](image/sp.gif)
+![](image/hp.gif)
  
 ####准备阶段
 
 ####一、我们在`TARGET`中经常会只保留一个方向，我建议三个都勾选上，控制器的方向我个人觉得控制器自己去控制就好。
 
-![](ScreenRotate/image/plist.png)
+![](image/plist.png)
 
 
 ####二、竖屏控制器 `VerticallyVideoVC`
@@ -144,7 +143,7 @@
 >* 调用系统的方法直接走上面的路径
 >* 自定义转场动画要遵循下面的路径
 
-![](ScreenRotate/image/zhuanchang.png)
+![](image/zhuanchang.png)
 
 **我把中间的两个给交给 `RotateAnimator` 去处理了**
 
@@ -187,18 +186,18 @@ MVC被很多人诟病可能主要的原因不是设计模式不好，而是C层�
 
 **其实在storyboard中一直也有这么个角色，那就是可以拖拽`NSObject`**
 
-![](ScreenRotate/image/NSObject.png)
+![](image/NSObject.png)
 
 我们创建一个类继承NSObject，如果这个类遵守`UIPickerViewDataSource, UIPickerViewDelegate` 关联到这个NSObject上
 
-![](ScreenRotate/image/picker.png)
-![](ScreenRotate/image/pickerShow.png)
+![](image/picker.png)
+![](image/pickerShow.png)
 
 那么我就可以把一堆协议方法分离到这个类里，去帮助我们控制器减压。其实有个更大的好处就是在复用的时候，我们可以直接使用，也让分离代码变得更容易。在转场动画这个示例里 `RotateAnimator` 就是这个NSObject对象。
 
 ####同理这种思想可以应用到播放器的开发中，第一次接触的这种模式是参考百度视频的代码。大概就如下的结构，个人觉得优势在于可以随便替换视图或者是视频播放器，比如我不用百度的播放器了，UI上的任何东西都不用动，只动播放逻辑部分即可。不管播放器在控制器中，还是在cell中，都能够很多好的移植。
 
-![](ScreenRotate/image/bdPlayer.png)
+![](image/bdPlayer.png)
 
 
 ****
