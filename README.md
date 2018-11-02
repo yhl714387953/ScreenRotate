@@ -7,13 +7,13 @@
 还有[https://github.com/alanwangmodify/WXSTransition](https://github.com/alanwangmodify/WXSTransition) 这位大神挺狠，**50种动画**。
 
 
-###全屏的实质
+### 全屏的实质
 如果摒弃掉Apple不建议的方法，那么在IOS8之后，横屏全屏的实质是弹出一个控制器，控制器支持的方向为横屏即可。我们看到的**视频旋转**实际上是定义了一个控制器切换的**转场动画**。
 
 >* 竖屏切横屏：弹出一个横屏的控制器
 >* 横屏返回竖屏：dismiss掉横屏控制器
 
-####需求
+#### 需求
 
 >* 可手动触发旋转
 >* 可跟随手机屏幕旋转（不论设备是否开启屏幕旋转功能）
@@ -23,14 +23,14 @@
 ![](ScreenRotate/image/sp.gif)
 ![](ScreenRotate/image/hp.gif)
  
-####准备阶段
+#### 准备阶段
 
-####一、我们在`TARGET`中经常会只保留一个方向，我建议三个都勾选上，控制器的方向我个人觉得控制器自己去控制就好。
+#### 一、我们在`TARGET`中经常会只保留一个方向，我建议三个都勾选上，控制器的方向我个人觉得控制器自己去控制就好。
 
 ![](ScreenRotate/image/plist.png)
 
 
-####二、竖屏控制器 `VerticallyVideoVC`
+#### 二、竖屏控制器 `VerticallyVideoVC`
 
 控制器内要实现四个方法
 
@@ -59,7 +59,7 @@
 ```
 
 四个方法都比较好理解，不再赘述。
-#####这里要注意一下的就是，如果这个控制器带有导航的，那么屏幕方向由导航去控制的，所以要在 `NavigationController` 中去控制，为了方便我们可以自定义一个导航，并实现上面的几个方法
+##### 这里要注意一下的就是，如果这个控制器带有导航的，那么屏幕方向由导航去控制的，所以要在 `NavigationController` 中去控制，为了方便我们可以自定义一个导航，并实现上面的几个方法
 
 ```
 
@@ -87,7 +87,7 @@
 
 **其实就是把屏幕的方向交给了导航栈顶的控制器去控制。**
 
-####三、横屏控制器 `HorizontallyVideoVC`
+#### 三、横屏控制器 `HorizontallyVideoVC`
 在这个控制器内同样也实现上面的几个方法
 
 ```
@@ -123,7 +123,7 @@
 
 但是发现没有动画啊，就解决了横屏到竖屏的转换。那么这里就需要定义一个动画，用来实现横竖屏的过渡，下面是第四个准备工作，负责转场动画的类。
 
-####四、转场动画控制 `RotateAnimator`
+#### 四、转场动画控制 `RotateAnimator`
 
 在控制器跳转前会找一个`delegate`去调用下跳转过渡的方法，如果你没有实现这个方法就默认用系统的方法，如果你实现了，就会按照你的方法执行。控制器有个`transitioningDelegate`属性，就是不管`PUSH` `POP` `PRESENT` `DISMISS` 任意一种方式跳转，都会让 `transitioningDelegate ` 这个对象调用对应的协议方法去实现自定义的转场动画。
 
@@ -150,9 +150,9 @@
 
 这个方法里做你需要的动画即可。具体动画可参照 git 上的 `DEMO`
  
-####五、设备旋转监听 `UIDeviceOrientationDidChangeNotification`
+#### 五、设备旋转监听 `UIDeviceOrientationDidChangeNotification`
 
-**这个方法任何时候都适应，即使设备方向是锁定的**
+**这个方法在设备方向锁定的时候会监听不到，但是在APP切出去再回来的时候，会监听到竖屏通知**
 
 `notification.object;` 就是 **UIDevice** 对象，这里可以拿到屏幕的方向
 
