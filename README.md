@@ -83,6 +83,10 @@
     return [[self.viewControllers lastObject] prefersStatusBarHidden];
 }
 
+-(void)setNeedsStatusBarAppearanceUpdate{
+    NSLog(@"实现这个方法在iPhone X以上的设备横屏也可以显示状态栏");
+}
+
 ```
 
 **其实就是把屏幕的方向交给了导航栈顶的控制器去控制。**
