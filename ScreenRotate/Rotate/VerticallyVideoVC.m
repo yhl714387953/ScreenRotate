@@ -156,6 +156,7 @@
 -(void)jumpToHVideo{
     HorizontallyVideoVC* horizontallyVideoVC = [[HorizontallyVideoVC alloc] init];
     horizontallyVideoVC.transitioningDelegate = self.customAnimator;
+    horizontallyVideoVC.modalPresentationStyle = UIModalPresentationFullScreen;
     [self presentViewController:horizontallyVideoVC animated:YES completion:^{
         NSLog(@"presentViewController执行完毕，有的时候控制器切换如果有视频在播放可能会有顿，可在执行前和完成之后做一些暂停开始的处理");
     }];
