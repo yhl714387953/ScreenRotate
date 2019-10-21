@@ -1,5 +1,5 @@
 # ScreenRotate
-浅谈IOS视频全屏播放、屏幕旋转与控制器转场动画，妈妈再也不用担心APP上架被拒了
+浅谈iOS视频全屏播放、屏幕旋转与控制器转场动画，妈妈再也不用担心APP上架被拒了
 ===
 
 来一波大神的写的[https://github.com/DevLiYang/LYCustomTransition](https://github.com/DevLiYang/LYCustomTransition)  这里有各种各样的转场动画(交互式、非交互式)，微信的、酷狗的等等…
