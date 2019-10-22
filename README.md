@@ -8,7 +8,7 @@
 
 
 ### 全屏的实质
-如果摒弃掉Apple不建议的方法，那么在IOS8之后，横屏全屏的实质是弹出一个控制器，控制器支持的方向为横屏即可。我们看到的**视频旋转**实际上是定义了一个控制器切换的**转场动画**。
+如果摒弃掉Apple不建议的方法，那么在iOS8之后，横屏全屏的实质是弹出一个控制器，控制器支持的方向为横屏即可。我们看到的**视频旋转**实际上是定义了一个控制器切换的**转场动画**。
 
 >* 竖屏切横屏：弹出一个横屏的控制器
 >* 横屏返回竖屏：dismiss掉横屏控制器
@@ -131,7 +131,7 @@
 
 在控制器跳转前会找一个`delegate`去调用下跳转过渡的方法，如果你没有实现这个方法就默认用系统的方法，如果你实现了，就会按照你的方法执行。控制器有个`transitioningDelegate`属性，就是不管`PUSH` `POP` `PRESENT` `DISMISS` 任意一种方式跳转，都会让 `transitioningDelegate ` 这个对象调用对应的协议方法去实现自定义的转场动画。
 
-**UIViewControllerTransitioningDelegate** 这里需要指定一个转场动画的**实现者**，实现这要去实现**UIViewControllerAnimatedTransitioning**的
+**UIViewControllerTransitioningDelegate** 这里需要指定一个转场动画的**实现者**，**实现者**要去实现**UIViewControllerAnimatedTransitioning**的
 
 ```
 - (void)animateTransition:(id <UIViewControllerContextTransitioning>)transitionContext;
